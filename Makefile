@@ -6,47 +6,42 @@
 #    By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 12:41:30 by aglanuss          #+#    #+#              #
-#    Updated: 2024/04/04 12:52:03 by aglanuss         ###   ########.fr        #
+#    Updated: 2024/04/07 00:08:58 by aglanuss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-CFLAGS = -Wall -Wextra -Werror -Imlx
-
-SRC = src/main.c src/utils/fractol_init.c src/utils/ft_error_print.c\
-			src/utils/look_error.c src/utils/ft_atod.c
-
-OBJECTS = $(SRC:.c=.o)
-
 CC = gcc
 
-# ? MAC
-GNOME_FLAGS = -framework OpenGL -framework AppKit
-GNOME_PATH = ./minilibx-mac/
-MLX_PATH = $(GNOME_PATH)/libmlx.a
+CFLAGS = -Wall -Wextra -Werror -Imlx
 
-FLAGS = -I $(GNOME_PATH) -I includes/fractol.h $(CFLAGS)
+SRCS = src/main.c
 
-all : _mlx $(NAME)
+INCLUDES = includes/fractol.h
 
-$(NAME) : $(OBJECTS) $(MLX_PATH) includes/fractol.h Makefile
-	$(CC) $(FLAGS) $(OBJECTS) $(MLX_PATH) $(GNOME_FLAGS) -o $(NAME)
+OBJS = $(SRCS:.c=.o)
 
-%.o : %.c includes/fractol.h Makefile
-	$(CC) $(FLAGS) -c $< -o $@
+MLX_PATH = lib/mlx
 
-clean :
-	make clean -C $(GNOME_PATH)
-	rm -f $(OBJECTS)
+all: $(NAME)
 
-fclean : clean
-	make clean -C $(GNOME_PATH)
+$(MLX_PATH)/libmlx.a:
+	$(MAKE) -C $(MLX_PATH)
+
+$(NAME): $(MLX_PATH)/libmlx.a $(OBJS) Makefile
+	$(CC) $(FLAGS) $(OBJS) -Llib/mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+%.o: %.c $(INCLUDES)
+	$(CC) $(FLAGS) -Imlx -c $< -o $@
+
+clean:
+	$(MAKE) -C $(MLX_PATH) clean
+	rm -f $(OBJS)
+
+fclean: clean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
 
-_mlx :
-	make -C $(GNOME_PATH)
-
-.PHONY: all clean fclean re _mlx
+.PHONY: all clean fclean re

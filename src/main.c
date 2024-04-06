@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:40:04 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/04 13:12:35 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/07 00:32:17 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,18 @@ int	main(void)
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 5000, 5000);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	my_mlx_pixel_put(&img, 150, 150, 0x00FF0000);
+	img.img = mlx_new_image(mlx, 9000, 9000);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+  int i = -1;
+  while (i++ < 2000)
+  {
+    if (i <= 500)
+	    my_mlx_pixel_put(&img, 400 + i, 400, 0x00FF0000);
+    else if (i > 500 && i <= 1000)
+      my_mlx_pixel_put(&img, 500, 400 + i, 0x00FF0000);
+    else if (i > 1000 && i <= 1500)
+      my_mlx_pixel_put(&img, 500, 900, 0x00FF0000);
+  }
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
