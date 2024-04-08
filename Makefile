@@ -6,7 +6,7 @@
 #    By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 12:41:30 by aglanuss          #+#    #+#              #
-#    Updated: 2024/04/07 00:08:58 by aglanuss         ###   ########.fr        #
+#    Updated: 2024/04/08 21:04:19 by aglanuss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -Imlx
 
-SRCS = src/main.c
+INCLUDES = $(wildcard includes/*.h)
 
-INCLUDES = includes/fractol.h
+UTILS = $(wildcard utils/*.c)
+
+SRCS = src/main.c $(UTILS)
 
 OBJS = $(SRCS:.c=.o)
 
