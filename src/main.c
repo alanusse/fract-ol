@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:40:04 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:28 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/11 02:17:05 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,47 @@
 #include <string.h>
 #include <stdio.h>
 
+int	is_valid_arguments_julia(char **argv)
+{
+	double  x;
+  double  y;
+
+	x = ft_atod(argv[2]);
+  y = ft_atod(argv[3]);
+	if (x < -2.0 || x > 2.0 || y < -1.5 || y > 1.5)
+		return (0);
+	else
+		return (1);
+}
+
+void	check_arguments(int argc, char **argv, t_fractol  **fractol)
+{
+	if (argc >= 2)
+	{
+		if (argc == 2 && !ft_strcmp(argv[1], FRACTAL_MANDELBROT))
+			(*fractol)->type = FRACTAL_MANDELBROT;
+	}
+  else
+  {
+    ft_putstr_fd_nl(STDERR_FILENO, "Usage: ./fractol <type>");
+    ft_putstr_fd_nl(STDERR_FILENO, "Available types: mandelbrot, julia");
+    exit(EXIT_FAILURE);
+  }
+}
+
 // void	check_arguments(int argc, char **argv, t_fractol  **fractol)
 // {
-//   double  x;
-//   double  y;
-
 // 	if (argc == 2 && !ft_strcmp(argv[1], FRACTAL_MANDELBROT))
 //     (*fractol)->type = FRACTAL_MANDELBROT;
 //   else if (argc == 4 && !ft_strcmp(argv[1], FRACTAL_JULIA))
 //   {
-//     x = ft_atod(argv[2]);
-//     y = ft_atod(argv[3]);
-//     if (x < -2.0 || x > 2.0 || y < -1.5 || y > 1.5)
+//     if (!is_valid_arguments_julia(argv))
 //     {
 //       ft_putstr_fd_nl(STDERR_FILENO,
 //         "Usage: ./fractol julia <[-2, 2]> <[-1.5, 1.5]>");
 //       exit(EXIT_FAILURE);
 //     }
-//     else
-//       (*fractol)->type = FRACTAL_JULIA;
+// 		(*fractol)->type = FRACTAL_JULIA;
 //   }
 //   else
 //   {
