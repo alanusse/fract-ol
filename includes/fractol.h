@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/09 12:22:58 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:59:06 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct  s_fractol
 	char	*type;
 }               t_fractol;
 
+int     ft_isdigit(char c);
 int			ft_strlen(char *str);
 int			ft_strcmp(char *s1, char *s2);
 double	ft_atod(char *str);
