@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/11 11:59:06 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:16:55 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int			ft_strcmp(char *s1, char *s2);
 double	ft_atod(char *str);
 void		ft_putstr_fd(int fd, char *str);
 void		ft_putstr_fd_nl(int fd, char *str);
+void    check_arguments(int argc, char **argv, t_fractol **fractol);
 
 #endif
