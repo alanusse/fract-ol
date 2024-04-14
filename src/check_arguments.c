@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:01:54 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/13 00:23:02 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/13 02:14:28 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,17 @@ void usage_julia_message(void)
 	exit(EXIT_FAILURE);
 }
 
-void	init_fractal(char *fractal_type)
-{
-	if (ft_strcmp(fractal_type, FRACTAL_MANDELBROT) == 0)
-		// todo: init mandelbrot
-		return ;
-	if (ft_strcmp(fractal_type, FRACTAL_JULIA) == 0)
-		// todo: init julia
-		return ;
-}
-
 void	check_arguments(int argc, char **argv, t_fractol **fractol)
 {
 	if (argc >= 2)
 	{
 		if (argc == 2 && ft_strcmp(argv[1], FRACTAL_MANDELBROT) == 0)
-			return (init_fractal(FRACTAL_MANDELBROT));
+			return ;
 		if (ft_strcmp(argv[1], FRACTAL_JULIA) == 0)
 		{
 			if (argc != 4 || !is_valid_arguments_julia(argv))
 				return (usage_julia_message());
-			return (init_fractal(FRACTAL_JULIA));
+			return ;
 		}
 	}
 	return (usage_message());
