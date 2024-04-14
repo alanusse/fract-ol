@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 02:25:31 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/14 13:15:43 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/15 01:24:24 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ void  draw_mandelbrot(t_fractol *fractol)
   double minY = centerY - rangeY / 2;
   double maxY = centerY + rangeY / 2;
 
+  fractol->image = malloc(sizeof(t_image));
+  if(!fractol->image)
+    return (print_error());
+  fractol->image->img = mlx_new_image(fractol->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+  if(!fractol->image->img)
+    return (print_error());
+  fractol->image->addr = mlx_get_data_addr(fractol->image->img, &fractol->image->bits_per_pixel, &fractol->image->line_length, &fractol->image->endian);
+
   y = -1;
   while (++y < WINDOW_HEIGHT)
   {
@@ -83,8 +91,10 @@ void  draw_mandelbrot(t_fractol *fractol)
       double y0 = ((double)y / WINDOW_HEIGHT) * (maxY - minY) + minY;
       int iter = mandelbrotIterations(x0, y0);
       unsigned int hexColor = getColor(iter);
-      my_mlx_pixel_put(&fractol->image, x, y, hexColor);
+      put_pixel_to_img(fractol->image, x, y, hexColor);
     }
   }
-  mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->image.img, 0, 0);
+  mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->image->img, 0, 0);
+  mlx_destroy_image(fractol->mlx, fractol->image->img);
+  free(fractol->image);
 }
