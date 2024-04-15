@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:20:38 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 20:25:21 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/15 21:51:17 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ static int  key_hook(int code, t_fractol **fractol)
 {
   if (code == ESC_KEY)
     destroy_fractol(fractol);
+  if (code == ARROW_UP_KEY || code == ARROW_DOWN_KEY
+    || code == ARROW_LEFT_KEY || code == ARROW_RIGHT_KEY)
+  {
+    if (code == ARROW_UP_KEY)
+      (*fractol)->middle_y -= MOVEMENT_FACTOR / (*fractol)->zoom;
+    if (code == ARROW_DOWN_KEY)
+      (*fractol)->middle_y += MOVEMENT_FACTOR / (*fractol)->zoom;
+    if (code == ARROW_RIGHT_KEY)
+      (*fractol)->middle_x += MOVEMENT_FACTOR / (*fractol)->zoom;
+    if (code == ARROW_LEFT_KEY)
+      (*fractol)->middle_x -= MOVEMENT_FACTOR / (*fractol)->zoom;
+    draw_fractal(*fractol);
+  }
+
   return (0);
 }
 

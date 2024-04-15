@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 02:25:31 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 20:28:58 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/15 21:52:17 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,13 @@ int mandelbrot_iterations(double x0, double y0)
 
 void  calculate_coordinate(t_fractol *fractol, double px, double py, double *x0, double *y0)
 {
-  double centerX = -0.75;
-  double centerY = 0.0;
-
   double rangeX = (1 + 2.5) / fractol->zoom;
   double rangeY = (1.5 + 1.5) / fractol->zoom;
 
-  double minX = centerX - rangeX / 2;
-  double maxX = centerX + rangeX / 2;
-  double minY = centerY - rangeY / 2;
-  double maxY = centerY + rangeY / 2;
+  double minX = fractol->middle_x - rangeX / 2;
+  double maxX = fractol->middle_x + rangeX / 2;
+  double minY = fractol->middle_y - rangeY / 2;
+  double maxY = fractol->middle_y + rangeY / 2;
   *x0 = ((double)px / WINDOW_WIDTH) * (maxX - minX) + minX;
   *y0 = ((double)py / WINDOW_HEIGHT) * (maxY - minY) + minY;
 }

@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 20:28:51 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/15 21:50:51 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define WINDOW_HEIGHT 800
 # define MAX_ITERATIONS 42
 # define ZOOM_FACTOR 0.7
+# define MOVEMENT_FACTOR 0.5
 
 /**
  * Keys definitions
@@ -65,6 +66,8 @@ typedef struct s_fractol
 	t_image	*image;
 	char		*name;
 	double	zoom;
+  double  middle_x;
+  double  middle_y;
 }							t_fractol;
 
 void					print_error(void);
