@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:15:42 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/16 11:42:17 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:49:19 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void draw_fractal(t_fractol *fractol)
 {
   if (ft_strcmp(fractol->name, FRACTAL_MANDELBROT) == 0)
     return (draw_mandelbrot(fractol));
-  // todo: draw julia
+  if (ft_strcmp(fractol->name, FRACTAL_JULIA) == 0)
+    return (draw_julia(fractol));
 }
 
 /**
@@ -38,7 +39,7 @@ void  destroy_fractol(t_fractol **fractol)
   exit(EXIT_SUCCESS);
 }
 
-void  init_fractol(t_fractol **f, char *name)
+void  init_fractol(t_fractol **f, char **argv)
 {
   (*f)->mlx = mlx_init();
   if (!(*f)->mlx)
@@ -46,12 +47,17 @@ void  init_fractol(t_fractol **f, char *name)
   (*f)->win = mlx_new_window((*f)->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "fract-ol");
   if (!(*f)->win)
     return (print_error());
-  (*f)->name = name;
+  (*f)->name = argv[1];
   (*f)->zoom = 1.0;
-  if (ft_strcmp(name, FRACTAL_MANDELBROT) == 0)
+  if (ft_strcmp(argv[1], FRACTAL_MANDELBROT) == 0)
     (*f)->middle_x = -0.75;
   else
     (*f)->middle_x = 0.0;
   (*f)->middle_y = 0.0;
   (*f)->color = 0;
+  if (ft_strcmp(argv[1], FRACTAL_JULIA) == 0)
+  {
+    (*f)->cr_julia = ft_atod(argv[2]);
+    (*f)->ci_julia = ft_atod(argv[3]);
+  }
 }

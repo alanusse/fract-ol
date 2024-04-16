@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/16 12:03:26 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:00:46 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_fractol
 	double	zoom;
   double  middle_x;
   double  middle_y;
+  double  cr_julia;
+  double  ci_julia;
 	int			color;
 }							t_fractol;
 
@@ -95,15 +97,17 @@ void					ft_putstr_fd(int fd, char *str);
 void					ft_putstr_fd_nl(int fd, char *str);
 void					check_arguments(int argc, char **argv, t_fractol **fractol);
 void					draw_mandelbrot(t_fractol *fractol);
+void          draw_julia(t_fractol *fractol);
 void					put_pixel_to_img(t_image *img, int x, int y, int color);
 unsigned int	rgb_to_hex(int r, int g, int b);
 void					put_image_to_window(t_fractol *fractol);
 void					init_image(t_fractol *fractol);
 void					draw_fractal(t_fractol *fractol);
-void					init_fractol(t_fractol **f, char *name);
+void  init_fractol(t_fractol **f, char **argv);
 void  init_handlers(t_fractol **fractol);
 void  destroy_fractol(t_fractol **fractol);
 void  change_color(t_fractol **fractol);
 unsigned int	get_color(int iterations, int palette);
+t_plane	calculate_coordinate(t_fractol *fractol, double px, double py);
 
 #endif
