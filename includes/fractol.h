@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 21:50:51 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:03:26 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <math.h>
 # include "../lib/mlx/mlx.h"
 
 /**
@@ -37,6 +38,7 @@
 # define ARROW_RIGHT_KEY 124
 # define ARROW_DOWN_KEY 125
 # define ARROW_UP_KEY 126
+# define C_KEY 8
 
 /**
  * Fractal names
@@ -68,7 +70,20 @@ typedef struct s_fractol
 	double	zoom;
   double  middle_x;
   double  middle_y;
+	int			color;
 }							t_fractol;
+
+typedef struct  s_plane
+{
+  double  pos_x;
+  double  pos_y;
+  double  range_x;
+  double  range_y;
+  double  min_x;
+  double  max_x;
+  double  min_y;
+  double  max_y;
+}               t_plane;
 
 void					print_error(void);
 int						is_valid_decimal(char *str);
@@ -88,5 +103,7 @@ void					draw_fractal(t_fractol *fractol);
 void					init_fractol(t_fractol **f, char *name);
 void  init_handlers(t_fractol **fractol);
 void  destroy_fractol(t_fractol **fractol);
+void  change_color(t_fractol **fractol);
+unsigned int	get_color(int iterations, int palette);
 
 #endif

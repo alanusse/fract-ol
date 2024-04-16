@@ -6,11 +6,20 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:15:42 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 21:49:38 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:42:17 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+void  change_color(t_fractol **fractol)
+{
+  if ((*fractol)->color >= 2 || (*fractol)->color < 0)
+    (*fractol)->color = 0;
+  else
+    (*fractol)->color += 1;
+  draw_fractal(*fractol);
+}
 
 void draw_fractal(t_fractol *fractol)
 {
@@ -40,9 +49,9 @@ void  init_fractol(t_fractol **f, char *name)
   (*f)->name = name;
   (*f)->zoom = 1.0;
   if (ft_strcmp(name, FRACTAL_MANDELBROT) == 0)
-  {
     (*f)->middle_x = -0.75;
-    (*f)->middle_y = 0.0;
-  }
-  // TODO: set middle of julia set
+  else
+    (*f)->middle_x = 0.0;
+  (*f)->middle_y = 0.0;
+  (*f)->color = 0;
 }

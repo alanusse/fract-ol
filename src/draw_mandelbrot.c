@@ -6,88 +6,76 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 02:25:31 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 21:52:17 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:09:37 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int get_color(int iterations)
+/**
+ * Get coordinates from mandelbrot plane and return the number
+ * of itertions it takes.
+*/
+static int	mandelbrot_iterations(double x0, double y0)
 {
-  int r;
-  int g;
-  int b;
-  double t;
+	double	x;
+	double	y;
+	double	xtemp;
+	int		iter;
 
-  if (iterations == MAX_ITERATIONS)
-  {
-    r = 0;
-    g = 0;
-    b = 0;
-  }
-  else
-  {
-    t = (double)iterations / MAX_ITERATIONS;
-    r = (int)(9 * (1 - t) * t * t * t * 255);
-    g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-    b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-  }
-  return rgb_to_hex(r, g, b);
+	x = 0;
+	y = 0;
+	iter = 0;
+	while (x * x + y * y <= 4 && iter < MAX_ITERATIONS)
+	{
+		xtemp = x * x - y * y + x0;
+		y = 2 * x * y + y0;
+		x = xtemp;
+		iter++;
+	}
+	return (iter);
 }
 
-int mandelbrot_iterations(double x0, double y0)
+/**
+ * Transform coordinates from screen to coordinates from mandelbrot.
+*/
+static t_plane	calculate_coordinate(t_fractol *fractol, double px, double py)
 {
-    double x;
-    double y;
-    double xtemp;
-    int iter;
+	t_plane	plane;
 
-    x = 0;
-    y = 0;
-    iter = 0;
-    while (x * x + y * y <= 4 && iter < MAX_ITERATIONS) {
-      xtemp = x * x - y * y + x0;
-      y = 2 * x * y + y0;
-      x = xtemp;
-      iter++;
-    }
-    return (iter);
+	plane.range_x = (1 + 2.5) / fractol->zoom;
+	plane.range_y = (1.5 + 1.5) / fractol->zoom;
+	plane.min_x = fractol->middle_x - plane.range_x / 2;
+	plane.max_x = fractol->middle_x + plane.range_x / 2;
+	plane.min_y = fractol->middle_y - plane.range_y / 2;
+	plane.max_y = fractol->middle_y + plane.range_y / 2;
+	plane.pos_x = ((double)px / WINDOW_WIDTH)
+		* (plane.max_x - plane.min_x) + plane.min_x;
+	plane.pos_y = ((double)py / WINDOW_HEIGHT)
+		* (plane.max_y - plane.min_y) + plane.min_y;
+	return (plane);
 }
 
-void  calculate_coordinate(t_fractol *fractol, double px, double py, double *x0, double *y0)
+void	draw_mandelbrot(t_fractol *fractol)
 {
-  double rangeX = (1 + 2.5) / fractol->zoom;
-  double rangeY = (1.5 + 1.5) / fractol->zoom;
+	int						px;
+	int						py;
+	int						iterations;
+	unsigned int			hex_color;
+	t_plane					plane;
 
-  double minX = fractol->middle_x - rangeX / 2;
-  double maxX = fractol->middle_x + rangeX / 2;
-  double minY = fractol->middle_y - rangeY / 2;
-  double maxY = fractol->middle_y + rangeY / 2;
-  *x0 = ((double)px / WINDOW_WIDTH) * (maxX - minX) + minX;
-  *y0 = ((double)py / WINDOW_HEIGHT) * (maxY - minY) + minY;
-}
-
-void  draw_mandelbrot(t_fractol *fractol)
-{
-  int px;
-  int py;
-  double x0;
-  double y0;
-  int iterations;
-  unsigned int hexColor;
-
-  init_image(fractol);
-  py = -1;
-  while (++py < WINDOW_HEIGHT)
-  {
-    px = -1;
-    while (++px < WINDOW_WIDTH)
-    {
-      calculate_coordinate(fractol, px, py, &x0, &y0);
-      iterations = mandelbrot_iterations(x0, y0);
-      hexColor = get_color(iterations);
-      put_pixel_to_img(fractol->image, px, py, hexColor);
-    }
-  }
-  put_image_to_window(fractol);
+	init_image(fractol);
+	py = -1;
+	while (++py < WINDOW_HEIGHT)
+	{
+		px = -1;
+		while (++px < WINDOW_WIDTH)
+		{
+			plane = calculate_coordinate(fractol, px, py);
+			iterations = mandelbrot_iterations(plane.pos_x, plane.pos_y);
+			hex_color = get_color(iterations, fractol->color);
+			put_pixel_to_img(fractol->image, px, py, hex_color);
+		}
+	}
+	put_image_to_window(fractol);
 }
