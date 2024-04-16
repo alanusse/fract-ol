@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:01:54 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/13 02:14:28 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:14:41 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	is_valid_arguments_julia(char **argv)
 		return (0);
 	x = ft_atod(argv[2]);
 	y = ft_atod(argv[3]);
-	if (x < -2.0 || x > 2.0 || y < -1.5 || y > 1.5)
+	if (x < -2.0 || x > 2.0 || y < -2 || y > 2)
 		return (0);
 	else
 		return (1);
@@ -37,7 +37,7 @@ void usage_message(void)
 void usage_julia_message(void)
 {
 	ft_putstr_fd(STDERR_FILENO, "Usage: ./fractol julia ");
-	ft_putstr_fd_nl(STDERR_FILENO, "<[-2, 2]> <[-1.5, 1.5]>");
+	ft_putstr_fd_nl(STDERR_FILENO, "<[-2, 2]> <[-2, 2]>");
 	exit(EXIT_FAILURE);
 }
 
