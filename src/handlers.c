@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:20:38 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/17 12:55:26 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 22:20:48 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,23 @@
  */
 static int	scroll_hook(int code, int x, int y, t_fractol **fractol)
 {
-	(void)x;
-	(void)y;
+	t_plane	plane;
+	double	prev_zoom;
+	double	zoom_factor;
+
 	if (code == MOUSE_SCROLL_UP || code == MOUSE_SCROLL_DOWN)
 	{
+		plane = calculate_coordinate(*fractol, x, y);
+		prev_zoom = (*fractol)->zoom;
 		if (code == MOUSE_SCROLL_DOWN)
-			(*fractol)->zoom *= ZOOM_FACTOR;
-		if (code == MOUSE_SCROLL_UP)
-			(*fractol)->zoom /= ZOOM_FACTOR;
+			zoom_factor = ZOOM_IN_FACTOR;
+		else
+			zoom_factor = ZOOM_OUT_FACTOR;
+		(*fractol)->zoom *= zoom_factor;
+		(*fractol)->middle_x += (plane.pos_x - (*fractol)->middle_x)
+			* (1 - 1 / zoom_factor);
+		(*fractol)->middle_y += (plane.pos_y - (*fractol)->middle_y)
+			* (1 - 1 / zoom_factor);
 		draw_fractal(*fractol);
 	}
 	return (0);
