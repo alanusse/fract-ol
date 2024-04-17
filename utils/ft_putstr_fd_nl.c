@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:47:10 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/11 12:47:26 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:02:56 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_putstr_fd_nl(int fd, char *str)
 {
-  ft_putstr_fd(fd, str);
-  write(fd, "\n", 1);
+	ft_putstr_fd(fd, str);
+	write(fd, "\n", 1);
 }

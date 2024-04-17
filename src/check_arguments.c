@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:01:54 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/16 14:14:41 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:59:08 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static int	is_valid_arguments_julia(char **argv)
 		return (1);
 }
 
-void usage_message(void)
+void	usage_message(void)
 {
 	ft_putstr_fd_nl(STDERR_FILENO, "Usage: ./fractol <type>");
 	ft_putstr_fd_nl(STDERR_FILENO, "Available types: mandelbrot, julia");
 	exit(EXIT_FAILURE);
 }
 
-void usage_julia_message(void)
+void	usage_julia_message(void)
 {
 	ft_putstr_fd(STDERR_FILENO, "Usage: ./fractol julia ");
 	ft_putstr_fd_nl(STDERR_FILENO, "<[-2, 2]> <[-2, 2]>");

@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:17:41 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/09 11:27:33 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:04:54 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_strlen(char *str)
 {
-  int len;
+	int	len;
 
-  len = 0;
+	len = 0;
 	if (!str)
 		return (len);
-  while (str[len])
-    len++;
-  return (len);
+	while (str[len])
+		len++;
+	return (len);
 }

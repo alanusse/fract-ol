@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 13:58:52 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/16 13:59:08 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:59:29 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_plane	calculate_coordinate(t_fractol *fractol, double px, double py)
 {
 	t_plane	plane;
-	double aspect_ratio;
+	double	aspect_ratio;
 
 	aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
 	plane.range_x = 4 / fractol->zoom;

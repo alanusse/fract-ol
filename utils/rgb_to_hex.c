@@ -6,13 +6,13 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 00:07:17 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/15 00:07:38 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:05:05 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-unsigned int rgb_to_hex(int r, int g, int b)
+unsigned int	rgb_to_hex(int r, int g, int b)
 {
-    return (r << 16) + (g << 8) + b;
+	return ((r << 16) + (g << 8) + b);
 }

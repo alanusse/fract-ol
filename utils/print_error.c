@@ -6,14 +6,14 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 02:07:31 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/13 02:08:53 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:03:59 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void  print_error(void)
+void	print_error(void)
 {
-  perror("Error: ");
-  exit(EXIT_FAILURE);
+	perror("Error: ");
+	exit(EXIT_FAILURE);
 }

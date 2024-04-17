@@ -6,16 +6,20 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 02:25:31 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/16 14:00:28 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:42:18 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
 /**
- * Get coordinates from mandelbrot plane and return the number
- * of itertions it takes.
-*/
+ * Calculates the number of iterations for a given point (x0, y0) in the
+ * Mandelbrot set before the sequence escapes to infinity.
+ *
+ * @param x0 The real part of the complex number.
+ * @param y0 The imaginary part of the complex number.
+ * @return The number of iterations before the sequence escapes.
+ */
 static int	mandelbrot_iterations(double x0, double y0)
 {
 	double	x;
@@ -36,6 +40,13 @@ static int	mandelbrot_iterations(double x0, double y0)
 	return (iter);
 }
 
+/**
+ * Draws the Mandelbrot set by iterating over each pixel in the display
+ * window, computing the Mandelbrot iteration count for each, and coloring
+ * the pixel based on that count.
+ *
+ * @param fractol A structure containing all the fractal data and settings.
+ */
 void	draw_mandelbrot(t_fractol *fractol)
 {
 	int						px;
