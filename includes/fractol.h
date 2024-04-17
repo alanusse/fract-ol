@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/17 12:51:13 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/17 21:58:58 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 800
 # define MAX_ITERATIONS 42
-# define ZOOM_FACTOR 0.7
+# define ZOOM_IN_FACTOR 1.2
+# define ZOOM_OUT_FACTOR 0.8
 # define MOVEMENT_FACTOR 0.5
 
 /**
