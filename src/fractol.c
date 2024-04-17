@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:15:42 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/17 12:56:20 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/18 00:46:01 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	draw_fractal(t_fractol *fractol)
 		return (draw_mandelbrot(fractol));
 	if (ft_strcmp(fractol->name, FRACTAL_JULIA) == 0)
 		return (draw_julia(fractol));
+	if (ft_strcmp(fractol->name, FRACTAL_BURNING_SHIP) == 0)
+		return (draw_burning_ship(fractol));
 }
 
 void	destroy_fractol(t_fractol **fractol)

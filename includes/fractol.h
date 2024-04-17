@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:45:12 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/17 21:58:58 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/18 00:45:52 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
  */
 # define FRACTAL_MANDELBROT "mandelbrot"
 # define FRACTAL_JULIA "julia"
+# define FRACTAL_BURNING_SHIP "burning-ship"
 
 /**
  * Image structure
@@ -100,6 +101,7 @@ void					check_arguments(int argc, char **argv,
 							t_fractol **fractol);
 void					draw_mandelbrot(t_fractol *fractol);
 void					draw_julia(t_fractol *fractol);
+void					draw_burning_ship(t_fractol *fractol);
 void					put_pixel_to_img(t_image *img, int x, int y, int color);
 unsigned int			rgb_to_hex(int r, int g, int b);
 void					put_image_to_window(t_fractol *fractol);

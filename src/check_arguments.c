@@ -6,7 +6,7 @@
 /*   By: aglanuss <aglanuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:01:54 by aglanuss          #+#    #+#             */
-/*   Updated: 2024/04/17 12:59:08 by aglanuss         ###   ########.fr       */
+/*   Updated: 2024/04/18 00:53:15 by aglanuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int	is_valid_arguments_julia(char **argv)
 void	usage_message(void)
 {
 	ft_putstr_fd_nl(STDERR_FILENO, "Usage: ./fractol <type>");
-	ft_putstr_fd_nl(STDERR_FILENO, "Available types: mandelbrot, julia");
+	ft_putstr_fd(STDERR_FILENO, "Available types: mandelbrot, julia, ");
+	ft_putstr_fd_nl(STDERR_FILENO, "burning-ship");
 	exit(EXIT_FAILURE);
 }
 
@@ -46,6 +47,8 @@ void	check_arguments(int argc, char **argv, t_fractol **fractol)
 	if (argc >= 2)
 	{
 		if (argc == 2 && ft_strcmp(argv[1], FRACTAL_MANDELBROT) == 0)
+			return ;
+		if (argc == 2 && ft_strcmp(argv[1], FRACTAL_BURNING_SHIP) == 0)
 			return ;
 		if (ft_strcmp(argv[1], FRACTAL_JULIA) == 0)
 		{
